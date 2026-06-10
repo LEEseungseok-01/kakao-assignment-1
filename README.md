@@ -1,121 +1,87 @@
-# 과제 2. React로 Todo 앱 마이그레이션하기
+# 📝 과제 2. React로 Todo 앱 만들기
 
-Vanilla JS로 구현했던 Todo 앱을 React Function Component 구조로 마이그레이션한 프로젝트입니다. 기존 기능 흐름은 유지하되, DOM 직접 조작 방식이 아니라 `state`, `props`, 조건부 렌더링, 배열 렌더링을 활용하는 방식으로 변경했습니다.
-
----
-
-## 🎯 과제 목표
-
-- 🧩 컴포넌트 단위로 UI를 분리하고, props와 state의 역할을 이해하기
-- 🤖 AI를 활용해 마이그레이션하고, 생성된 코드를 직접 읽고 수정하기
-- 🛠️ 에러 메시지를 AI와 함께 분석하고 해결하는 디버깅 흐름을 익히기
-- 🔄 Vanilla JS와 React 개발 방식의 차이 이해하기
+과제 1에서 Vanilla JS로 만든 Todo 앱을 React + Tailwind CSS로 재구현한 과제임.  
+컴포넌트 분리, 상태 관리, 스타일링 방식의 차이를 직접 경험하는 것이 목표임.
 
 ---
 
-## 📍 과제 위치
+## 🚀 실행 방법
 
-- 🌿 브랜치명 : `week-02-이승석`
-- 📁 주요 폴더 : `src/`
-- 📁 주요 컴포넌트 : `TodoForm.jsx` / `TodoList.jsx` / `TodoItem.jsx` / `FilterTabs.jsx` / `DateNavigator.jsx` / `WeekCalendar.jsx`
+1. 저장소를 클론함
 
----
+```bash
+git clone 저장소 주소
+cd kakao-assignment-1
+```
 
-## ⚙️ 실행 방법
+2. 패키지를 설치함
 
 ```bash
 npm install
+```
+
+3. 개발 서버를 실행함
+
+```bash
 npm run dev
 ```
 
-개발 서버가 실행되면 터미널에 표시되는 로컬 주소로 접속합니다.
+4. 브라우저에서 터미널에 표시되는 로컬 주소로 접속함
 
 ---
 
-## 🗂️ 프로젝트 구조
+## 📁 프로젝트 구조
 
 ```text
-src/
-├── components/
-│   ├── DateNavigator.jsx
-│   ├── FilterTabs.jsx
-│   ├── TodoForm.jsx
-│   ├── TodoItem.jsx
-│   ├── TodoList.jsx
-│   └── WeekCalendar.jsx
-├── App.jsx
-├── index.css
-└── main.jsx
+kakao-assignment-1/
+├── src/
+│   ├── components/
+│   │   ├── DateNavigator.jsx   # 날짜 이동 네비게이터
+│   │   ├── FilterTabs.jsx      # 상태 필터 탭
+│   │   ├── TodoForm.jsx        # Todo 입력창
+│   │   ├── TodoItem.jsx        # Todo 아이템
+│   │   ├── TodoList.jsx        # Todo 목록
+│   │   └── WeekCalendar.jsx    # 주간 캘린더
+│   ├── App.jsx                 # 루트 컴포넌트, 전체 상태 관리
+│   ├── index.css               # Tailwind CSS 및 공통 스타일
+│   └── main.jsx                # 앱 진입점
+├── index.html
+├── package.json
+├── package-lock.json
+└── vite.config.js
 ```
 
 ---
 
-## ✅ 구현한 기능
+## ✅ 구현 기능
 
-- [x] 🧱 전체 구조 잡기
-- [x] ⚙️ Vite + React 프로젝트 세팅
-- [x] 📝 Todo CRUD 기능 마이그레이션
-- [x] 🔎 상태별 필터링 기능 마이그레이션
-- [x] 📅 Todo 일간 뷰 마이그레이션
-- [x] 💾 로컬 스토리지 연동 마이그레이션
-- [x] 📆 Todo 주간 뷰 마이그레이션
+### 기본 미션
 
----
+- Todo CRUD 구현 (생성 / 수정 / 완료 처리 / 삭제)
+- 상태별 필터링 구현 (전체 / 진행 중 / 완료)
+- 일간 뷰 구현 (선택 날짜 기준 Todo 관리)
+- 로컬스토리지 연동 구현 (새로고침 후에도 데이터 유지)
 
-## 🤖 AI 활용 내역
+### 도전 미션
 
-### 🧱 전체 구조 잡기
-
-- 💬 AI 활용 내용 : 효율적인 마이그레이션을 위한 맥락을 어떻게 구성해야 하는지 조언을 받고, 기존 Vanilla JS 코드의 기능과 React 컴포넌트 구조를 정리해 전달했습니다.
-- ✍️ 직접 수정한 부분 : 현재 구현된 기능, React로 옮길 때의 기준, 원하는 컴포넌트 구조를 직접 정리했습니다.
-- 🧭 수정 이유 : AI가 예시로 생성해준 전달 내용에는 구현 예정 기능이 포함되어 있어, 실제 구현 범위에 맞게 수정했습니다.
-
-### 📝 Todo CRUD 기능 마이그레이션
-
-- 💬 AI 활용 내용 : CRUD 마이그레이션을 위해 먼저 프롬프트를 작성하고, 피드백을 받아 더 구체적인 요청으로 발전시킨 뒤 구현했습니다.
-- ✍️ 직접 수정한 부분 : `App.jsx`, `TodoForm.jsx`, `TodoList.jsx`, `TodoItem.jsx`로 역할을 나누도록 컴포넌트 구조를 명확히 했습니다.
-- 🧭 수정 이유 : C, R, U, D 기능별 역할을 컴포넌트 단위로 구분하면 코드 흐름을 더 이해하기 쉽다고 판단했습니다.
-
-### 🔎 상태별 필터링 기능 마이그레이션
-
-- 💬 AI 활용 내용 : Vanilla JS의 DOM 표시/숨김 방식이 아니라 React의 `useState`, `filter`, `props`를 활용하는 방식으로 구현 방향을 잡았습니다.
-- ✍️ 직접 수정한 부분 : 필터 탭별 Todo 개수를 직접 추가했습니다.
-- 🧭 수정 이유 : 1차 과제에서 구현했던 화면 흐름과 최대한 유사하게 만들기 위해서입니다.
-
-### 📅 Todo 일간 뷰 마이그레이션
-
-- 💬 AI 활용 내용 : 선택된 날짜에 해당하는 Todo만 보이도록 `selectedDate` 상태를 기준으로 필터링하는 구조를 설계했습니다.
-- ✍️ 직접 수정한 부분 : 오늘 버튼을 눌렀을 때 오늘 날짜로 돌아가는 기능과 버튼 UI를 수정했습니다.
-- 🧭 수정 이유 : 1차 과제에서 필요하다고 느꼈던 날짜 이동 UX를 React에서도 유지하기 위해서입니다.
-
-### 💾 로컬 스토리지 연동 마이그레이션
-
-- 💬 AI 활용 내용 : `todos`가 변경될 때마다 `useEffect`를 통해 localStorage에 자동 저장하는 방식으로 구현했습니다.
-- ✍️ 직접 수정한 부분 : `try...catch`를 사용해 JSON 파싱 실패와 저장 실패 상황을 방어했습니다.
-- 🧭 수정 이유 : localStorage 데이터가 손상되거나 저장에 실패해도 앱이 중단되지 않도록 하기 위해서입니다.
-
-### 📆 Todo 주간 뷰 마이그레이션
-
-- 💬 AI 활용 내용 : 날짜를 7일 단위로 계산하고, 클릭한 날짜가 일간 뷰의 기준 날짜가 되도록 구현했습니다.
-- ✍️ 직접 수정한 부분 : 주간 뷰와 일간 뷰의 선택 날짜가 어긋나지 않도록 `selectedDate`와 `weekStartDate`를 함께 관리했습니다.
-- 🧭 수정 이유 : 주차를 이동했을 때 선택된 날짜와 실제 목록이 자연스럽게 연결되도록 하기 위해서입니다.
+- 주간 뷰 구현 (이번 주 날짜별 Todo 현황 + 이전 / 다음 주 이동)
+- 날짜별 해당 날짜의 Todo 개수 표시
+- 오늘 날짜와 선택 날짜 시각적 구분
 
 ---
 
-## 💭 구현하면서 고민한 점
+## 🛠️ 활용 스택
 
-- 🤔 고민한 점 : 일간 뷰의 `오늘` 버튼이 정상 동작했지만, 처음에는 버튼이라기보다 텍스트처럼 보여 UI가 직관적이지 않았습니다.
-
-<img width="493" height="92" alt="Image" src="https://github.com/user-attachments/assets/89db2d74-8876-44d7-b66e-0acf8b7522cb" />
-
-- 🛠️ 해결 방법 : 배경색, 테두리, hover 스타일을 추가해 버튼 UI로서의 형태가 더 명확하게 보이도록 수정했습니다.
-- 🎯 추가 기능 판단 : 서비스의 핵심은 Todo 관리 흐름이라고 생각해, 1차 과제에서 추가했던 ProgressBar 같은 개인 확장 기능은 이번 제출 범위에서 제외했습니다.
+- `React 19`
+- `Vite 8`
+- `Tailwind CSS v4`
+- `Web Storage API` (`localStorage`)
 
 ---
 
-## 📝 과제 회고
+## 📌 참고사항
 
-- ✅ 잘한 점 : `TodoForm`, `TodoList`, `TodoItem` 등 여러 컴포넌트로 역할을 나눠 기능별로 어느 파일을 수정해야 하는지 이해하기 쉬웠습니다.
-- 🤖 잘한 점 : AI에게 질문하기 전에 어느 정도 직접 생각해보고 초안을 먼저 작성했습니다.
-- 😅 아쉬운 점 : 기능을 추가할 때 코드 작성 전 어떤 로직으로 흘러갈지 더 깊게 구상했으면 좋았을 것 같습니다.
-- 🔜 다음에 시도해볼 것 : 기능 구현 전 구조를 더 세부적으로 나누고, 어떤 컴포넌트에서 어떤 기능이 구현되는지 더 직관적으로 설계해보고 싶습니다.
+- 과제 1과 동일한 Todo 기능을 React 컴포넌트 기반으로 재구현한 버전임
+- DOM 직접 조작 대신 `state`, `props`, `map`, `filter` 중심으로 구현함
+- Todo 데이터는 `localStorage`에 JSON 문자열 형태로 저장함
+- JSON 파싱 실패와 localStorage 저장 실패 상황을 방어함
